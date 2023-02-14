@@ -1,34 +1,34 @@
-jest.mock('../src/commands/control', () => jest.fn())
-jest.mock('../src/commands/read', () => jest.fn())
-jest.mock('../src/commands/set', () => jest.fn())
-jest.mock('../src/streams/state', () => jest.fn())
-jest.mock('../src/streams/video', () => jest.fn())
+jest.mock("../build/commands/control", () => jest.fn());
+jest.mock("../build/commands/read", () => jest.fn());
+jest.mock("../build/commands/set", () => jest.fn());
+jest.mock("../build/streams/state", () => jest.fn());
+jest.mock("../build/streams/video", () => jest.fn());
 
-const controlCommands = require('../src/commands/control'),
-    readCommands = require('../src/commands/read'),
-    setCommands = require('../src/commands/set'),
-    stateStream = require('../src/streams/state'),
-    videoStream = require('../src/streams/video'),
-    index = require('../src/index')
+const controlCommands = require("../build/commands/control"),
+  readCommands = require("../build/commands/read"),
+  setCommands = require("../build/commands/set"),
+  stateStream = require("../build/streams/state"),
+  videoStream = require("../build/streams/video"),
+  index = require("../build/index");
 
-describe('index', () => {
-    it('should export read commands', () => {
-        expect(index.read).toBe(readCommands)
-    })
+describe("index", () => {
+  it("should export read commands", () => {
+    expect(index.read.default).toBe(readCommands);
+  });
 
-    it('should export control commands', () => {
-        expect(index.control).toBe(controlCommands)
-    })
+  it("should export control commands", () => {
+    expect(index.control.default).toBe(controlCommands);
+  });
 
-    it('should export control commands', () => {
-        expect(index.set).toBe(setCommands)
-    })
+  it("should export control commands", () => {
+    expect(index.set.default).toBe(setCommands);
+  });
 
-    it('should export state stream', () => {
-        expect(index.receiver.state).toBe(stateStream)
-    })
+  it("should export state stream", () => {
+    expect(index.receiver.state.default).toBe(stateStream);
+  });
 
-    it('should export video stream', () => {
-        expect(index.receiver.video).toBe(videoStream)
-    })
-})
+  it("should export video stream", () => {
+    expect(index.receiver.video.default).toBe(videoStream);
+  });
+});
